@@ -4,7 +4,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">Create a new post</div>
         <div class="panel-body">
-            <form action="/post/store" method="POST">
+            <form action="{{ route('post.store') }}" method="POST">
 
                 {{ csrf_field() }}
 
