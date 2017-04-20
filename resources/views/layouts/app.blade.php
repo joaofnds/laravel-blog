@@ -78,7 +78,24 @@
             </div>
         </nav>
 
-        @yield('content')
+        <div class="container">
+            <row>
+                <div class="col-lg-4">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="/home">Home</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/post/create">Create a new post</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-8">
+                    @yield('content')
+                </div>
+            </row>
+        </div>
+
     </div>
 
     <!-- Scripts -->
