@@ -20,9 +20,24 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
-	Route::get('/post/create', 'PostsController@create')
-	    ->name('post.create');
 
-	Route::post('/post/store', 'PostsController@store')
-		->name('post.store');
+    Route::group(['prefix' => 'post'], function () {
+        Route::get('/create', 'PostsController@create')
+            ->name('post.create');
+
+        Route::post('/store', 'PostsController@store')
+            ->name('post.store');
+    });
+
+    Route::group(['prefix' => 'category'], function () {
+        Route::get('/', 'CategoriesController@index')
+            ->name('category');
+
+        Route::get('/create', 'CategoriesController@create')
+            ->name('category.create');
+
+        Route::post('/store', 'CategoriesController@store')
+            ->name('category.store');
+    });
+
 });
