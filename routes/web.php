@@ -38,6 +38,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
         Route::post('/store', 'CategoriesController@store')
             ->name('category.store');
+
+        Route::post('/category/update/{id}', 'CategoriesController@update')
+            ->name('category.update');
+
+        Route::get('/category/edit/{id}', 'CategoriesController@edit')
+            ->name('category.edit');
+
+        Route::get('/category/destroy/{id}', 'CategoriesController@destroy')
+            ->name('category.destroy');
     });
 
 });

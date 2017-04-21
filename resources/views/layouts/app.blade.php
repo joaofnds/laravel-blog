@@ -97,7 +97,7 @@
                             </li>
                             
                             <li class="list-group-item">
-                                <a href="{{ route('category.create') }}">Create a new category</a>
+                                <a href="{{ route('category.create') }}">Create category</a>
                             </li>
 
                         </ul>

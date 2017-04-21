@@ -17,11 +17,15 @@
                         <td>{{ $category->name }}</td>
 
                         <td>
-                            <button class="btn btn-info">Edit</button>
+                            <a href="{{ route('category.edit', ['id' => $category->id]) }}"
+                               role="button"
+                               class="btn btn-info">Edit</a>
                         </td>
 
                         <td>
-                            <button class="btn btn-danger">Delete</button>
+                            <a href="{{ route('category.destroy', ['id' => $category->id]) }}"
+                               role="button"
+                               class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 @endforeach
