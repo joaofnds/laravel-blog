@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
 
@@ -41,6 +42,19 @@ class PostsController extends Controller
             'featured' => 'required|image',
             'content' => 'required',
             'category_id' => 'required'
+        ]);
+
+        $featured = $request->featured;
+
+        $featured_new_name = hash_file('sha256', $featured) . '.' . $featured->guessExtension();
+
+        $featured->move('uploads/posts', $featured_new_name);
+
+        $post = Post::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => $request->category_id,
+            'featured' => 'uploads/posts/'.$featured_new_name
         ]);
     }
 
