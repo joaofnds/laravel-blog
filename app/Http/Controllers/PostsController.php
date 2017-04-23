@@ -25,8 +25,14 @@ class PostsController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
+
+        if ($categories->count() === 0) {
+            return redirect()->back();
+        }
+
         return view('admin.posts.create')
-            ->with('categories', Category::all());
+            ->with('categories', $categories);
     }
 
     /**
