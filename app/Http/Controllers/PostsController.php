@@ -60,7 +60,8 @@ class PostsController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'category_id' => $request->category_id,
-            'featured' => 'uploads/posts/'.$featured_new_name
+            'featured' => 'uploads/posts/'.$featured_new_name,
+            'slug' => str_slug($request->title)
         ]);
     }
 
