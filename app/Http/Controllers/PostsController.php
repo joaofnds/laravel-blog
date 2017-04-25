@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -33,7 +34,8 @@ class PostsController extends Controller
         }
 
         return view('admin.posts.create')
-            ->with('categories', $categories);
+            ->with('categories', $categories)
+            ->with('tags', Tag::all());
     }
 
     /**
@@ -91,7 +93,8 @@ class PostsController extends Controller
 
         return view('admin.posts.edit')
             ->with('post', $post)
-            ->with('categories', Category::all());
+            ->with('categories', Category::all())
+            ->with('tags', Tag::all());
     }
 
     /**
@@ -103,7 +106,32 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        $post = Post::find($id);
+
+        if ($request->hasFile('featured'))
+        {
+            $featured = $request->featured;
+            $featured_new_name = hash_file('sha256', $featured) . '.' . $featured->guessExtension();
+            $featured->move('uploads/posts', $featured_new_name);
+            $post->featured = 'uploads/posts/'.$featured_new_name;
+        }
+
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->category_id = $request->category_id;
+        $post->slug = str_slug($request->title);
+
+        $post->tags()->sync($request->tags);
+
+        $post->save();
+
+        return redirect()->route('post');
     }
 
     /**

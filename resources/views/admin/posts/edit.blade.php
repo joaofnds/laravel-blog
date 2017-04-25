@@ -15,7 +15,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">Create a new post</div>
         <div class="panel-body">
-            <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('post.update', ['id' => $post->id]) }}" method="POST" enctype="multipart/form-data">
 
                 {{ csrf_field() }}
 
@@ -37,11 +37,24 @@
                 <div class="form-group">
                     <label for="category">Select a category</label>
                     <select name="category_id" id="category" class="form-control" value="{{ $post->category_id }}">
-                        {{-- TODO: fill with value stored in post --}}
                         @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}"
+                                    {{ $post->category_id === $category->id ? "selected" : "" }}>{{ $category->name }}</option>
                         @endforeach
                     </select>
+                </div>
+
+                <div class="form-group">
+                    @foreach($tags as $tag)
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"
+                                       name="tags[]"
+                                       value="{{ $tag->id }}"
+                                       {{ in_array($tag->id, array_column($post->tags()->get()->all(), 'id')) ? "checked" : "" }}>{{ $tag->tag }}
+                            </label>
+                        </div>
+                    @endforeach
                 </div>
 
                 <div class="form-group">

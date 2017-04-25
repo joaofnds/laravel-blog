@@ -34,6 +34,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/edit/{id}', 'PostsController@edit')
             ->name('post.edit');
 
+        Route::post('/update/{id}', 'PostsController@update')
+            ->name('post.update');
+
         Route::get('/trash/{id}', 'PostsController@trash')
             ->name('post.trash');
 
