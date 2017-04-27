@@ -100,4 +100,13 @@ class UsersController extends Controller
     {
         //
     }
+
+    public function toggleAdmin($id) {
+        $user = User::find($id);
+
+        $user->admin = !$user->admin;
+        $user->save();
+
+        return redirect()->back();
+    }
 }

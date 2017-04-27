@@ -25,7 +25,9 @@
                         </td>
 
                         <td>
-                            Permissions
+                            <a href="{{ route('user.toggleAdmin', ['id' => $user->id]) }}"
+                               role="button"
+                               class="btn btn-xs btn-{{ $user->admin ? 'danger' : 'info' }}">{{ $user->admin ? 'Remove' : 'Grant' }} Privileges</a>
                         </td>
 
                         <td>

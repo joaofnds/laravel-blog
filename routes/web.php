@@ -106,6 +106,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::post('/store', 'UsersController@store')
             ->name('user.store');
 
+        Route::get('/admin/{id}', 'UsersController@toggleAdmin')
+            ->name('user.toggleAdmin');
+
     });
 
 });
