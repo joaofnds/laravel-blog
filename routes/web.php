@@ -109,6 +109,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/admin/{id}', 'UsersController@toggleAdmin')
             ->name('user.toggleAdmin');
 
+        Route::get('/profile', 'ProfilesController@index')
+            ->name('user.profile');
+
+        Route::post('/profile', 'ProfilesController@update')
+            ->name('user.profile.update');
+
     });
 
 });
