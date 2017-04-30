@@ -130,6 +130,10 @@
                                 <a href="{{ route('user.create') }}">Create user</a>
                             </li>
 
+                            <li class="list-group-item">
+                                <a href="{{ route('settings') }}"}}>Settings</a>
+                            </li>
+
                         </ul>
                     </div>
                 @endif

@@ -1,4 +1,4 @@
-// To see the resulted rich text you need to put the content inside an element with the class 'fr-view'
+{{--To see the resulted rich text you need to put the content inside an element with the class 'fr-view'--}}
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
