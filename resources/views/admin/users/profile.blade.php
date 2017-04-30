@@ -7,7 +7,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">Edit your profile</div>
         <div class="panel-body">
-            <form action="{{ route('user.profile.update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('user.profile.update', ['id' => $user->id]) }}" method="POST" enctype="multipart/form-data">
 
                 {{ csrf_field() }}
 
