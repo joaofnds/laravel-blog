@@ -100,8 +100,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/create', 'UsersController@create')
             ->name('user.create');
 
-        Route::get('/delete', 'UsersController@delete')
-            ->name('user.delete');
+        Route::get('/destroy/{id}', 'UsersController@destroy')
+            ->name('user.destroy');
 
         Route::post('/store', 'UsersController@store')
             ->name('user.store');

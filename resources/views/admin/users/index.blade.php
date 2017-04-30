@@ -31,7 +31,9 @@
                         </td>
 
                         <td>
-                            <a href="{{ route('user.delete') }}"
+                            <a href="{{ Auth::id() === $user->id ? '#' : route('user.destroy', ['id' => $user->id]) }}"
+                               role="button"
+                               {{ Auth::id() === $user->id ? 'disabled' : '' }}
                                class="btn btn-danger"
                                role="button">Delete</a>
                         </td>
