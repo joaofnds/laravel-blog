@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@include('admin.includes.froala')
+
 @section('content')
 
     @if(count($errors) > 0)

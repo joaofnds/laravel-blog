@@ -145,6 +145,8 @@
 
     </div>
 
+    @include('admin.includes.log_vars')
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
