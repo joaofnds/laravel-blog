@@ -26,4 +26,18 @@ class FrontEndController extends Controller
             'settings' => $settings
         ]);
     }
+
+    public function single($slug)
+    {
+        $settings = Setting::first();
+        $categories = Category::take(4)->get();
+        $post = Post::where('slug', $slug)->first();
+
+        return view('single', [
+            'title' => $post->title,
+            'categories' => $categories,
+            'settings' => $settings,
+            'post' => $post
+        ]);
+    }
 }
