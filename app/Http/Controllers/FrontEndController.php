@@ -12,12 +12,17 @@ class FrontEndController extends Controller
     {
         $settings = Setting::first();
         $categories = Category::take(4)->get();
-        $first_post = Post::query()->orderBy('created_at', 'desc')->first();
+        $posts_by_date = Post::query()->orderBy('created_at', 'desc');
+        $posts = $posts_by_date
+            ->take(3)
+            ->get();
 
         return view('index', [
             'title' => $settings->site_name,
             'categories' => $categories,
-            'post' => $first_post
+            'first_post' => $posts[0],
+            'second_post' => $posts[1],
+            'third_post' => $posts[2]
         ]);
     }
 }
