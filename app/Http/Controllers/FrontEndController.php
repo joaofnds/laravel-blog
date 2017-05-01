@@ -22,7 +22,8 @@ class FrontEndController extends Controller
             'categories' => $categories,
             'first_post' => $posts[0],
             'second_post' => $posts[1],
-            'third_post' => $posts[2]
+            'third_post' => $posts[2],
+            'settings' => $settings
         ]);
     }
 }
