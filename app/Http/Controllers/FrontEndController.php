@@ -32,12 +32,16 @@ class FrontEndController extends Controller
         $settings = Setting::first();
         $categories = Category::take(4)->get();
         $post = Post::where('slug', $slug)->first();
+        $next_post_id = Post::where('id', '>', $post->id)->min('id');
+        $previous_post_id = Post::where('id', '<', $post->id)->max('id');
 
         return view('single', [
             'title' => $post->title,
             'categories' => $categories,
             'settings' => $settings,
-            'post' => $post
+            'post' => $post,
+            'next_post' => Post::find($next_post_id),
+            'previous_post' => Post::find($previous_post_id)
         ]);
     }
 }

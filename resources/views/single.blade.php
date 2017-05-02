@@ -12,10 +12,10 @@
                 <article class="hentry post post-standard-details">
 
                     <div class="post-thumb">
-                        <img src="{{ $post->featured }}" alt="seo">
+                        <img src="{{ $post->featured }}" alt="{{ $post->title }}">
                     </div>
 
-                    <div class="post__content">
+                    <div class="post__content" style="color: #2f2c2c;">
 
 
                         <div class="post-additional-info">
@@ -54,25 +54,29 @@
 
                 <div class="pagination-arrow">
 
-                    <a href="#" class="btn-prev-wrap">
-                        <svg class="btn-prev">
-                            <use xlink:href="#arrow-left"></use>
-                        </svg>
-                        <div class="btn-content">
-                            <div class="btn-content-title">Next Post</div>
-                            <p class="btn-content-subtitle">Claritas Est Etiam Processus</p>
-                        </div>
-                    </a>
+                    @if($next_post)
+                        <a href="{{ route('post.single', ['slug' => $next_post->slug]) }}" class="btn-prev-wrap">
+                            <svg class="btn-prev">
+                                <use xlink:href="#arrow-left"></use>
+                            </svg>
+                            <div class="btn-content">
+                                <div class="btn-content-title">Next Post</div>
+                                <p class="btn-content-subtitle">{{ $next_post->title }}</p>
+                            </div>
+                        </a>
+                    @endif
 
-                    <a href="#" class="btn-next-wrap">
-                        <div class="btn-content">
-                            <div class="btn-content-title">Previous Post</div>
-                            <p class="btn-content-subtitle">Duis Autem Velius</p>
-                        </div>
-                        <svg class="btn-next">
-                            <use xlink:href="#arrow-right"></use>
-                        </svg>
-                    </a>
+                    @if($previous_post)
+                        <a href="{{ route('post.single', ['slug' => $previous_post->slug]) }}" class="btn-next-wrap">
+                            <div class="btn-content">
+                                <div class="btn-content-title">Previous Post</div>
+                                <p class="btn-content-subtitle">{{ $previous_post->title }}</p>
+                            </div>
+                            <svg class="btn-next">
+                                <use xlink:href="#arrow-right"></use>
+                            </svg>
+                        </a>
+                    @endif
                 </div>
             </div>
 
