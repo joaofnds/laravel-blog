@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Post;
 use App\Setting;
+use App\Tag;
 
 class FrontEndController extends Controller
 {
@@ -42,6 +43,24 @@ class FrontEndController extends Controller
             'post' => $post,
             'next_post' => Post::find($next_post_id),
             'previous_post' => Post::find($previous_post_id)
+        ]);
+    }
+
+    public function category($id)
+    {
+        $category = Category::find($id);
+        $tags = Tag::all();
+        $settings = Setting::first();
+        $categories = Category::take(4)->get();
+        $categories_all = Category::all();
+
+        return view('category', [
+            'category' => $category,
+            'title' => $category->name,
+            'categories' => $categories,
+            'categories_all' => $categories_all,
+            'tags' => $tags,
+            'settings' => $settings
         ]);
     }
 }

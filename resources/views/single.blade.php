@@ -45,7 +45,7 @@
 
                                 <span class="category">
                                 <i class="seoicon-tags"></i>
-                                <a href="#">{{ $post->category->name }}</a>
+                                <a href="{{ route('category.single', ['id' => $post->category->id]) }}">{{ $post->category->name }}</a>
                                     </span>
 
                             </div>
@@ -84,25 +84,27 @@
                     </div>
                 </div>
 
-                <div class="col-lg-12">
-                    <aside aria-label="sidebar" class="sidebar sidebar-right">
-                        <div class="widget w-tags">
-                            <div class="heading text-center">
-                                <h4 class="heading-title">POST TAGS</h4>
-                                <div class="heading-line">
-                                    <span class="short-line"></span>
-                                    <span class="long-line"></span>
+                @if(count($post->tags) > 0)
+                    <div class="col-lg-12">
+                        <aside aria-label="sidebar" class="sidebar sidebar-right">
+                            <div class="widget w-tags">
+                                <div class="heading text-center">
+                                    <h4 class="heading-title">POST TAGS</h4>
+                                    <div class="heading-line">
+                                        <span class="short-line"></span>
+                                        <span class="long-line"></span>
+                                    </div>
+                                </div>
+
+                                <div class="tags-wrap">
+                                    @foreach($post->tags as $tag)
+                                        <a href="#" class="w-tags-item">{{ $tag->tag }}</a>
+                                    @endforeach
                                 </div>
                             </div>
-
-                            <div class="tags-wrap">
-                                @foreach($post->tags as $tag)
-                                    <a href="#" class="w-tags-item">{{ $tag->tag }}</a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </aside>
-                </div>
+                        </aside>
+                    </div>
+                @endif
 
                 <div class="comments col-lg-12">
 
