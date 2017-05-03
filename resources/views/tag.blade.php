@@ -5,7 +5,7 @@
 @section('content')
     <div class="stunning-header stunning-header-bg-lightviolet">
         <div class="stunning-header-content">
-            <h1 class="stunning-header-title">{{ $category->name }}</h1>
+            <h1 class="stunning-header-title">{{ $tag->tag }}</h1>
         </div>
     </div>
 
@@ -17,8 +17,8 @@
 
                     <div class="case-item-wrap">
 
-                        @if(count($category->posts) > 0)
-                            @foreach($category->posts as $post)
+                        @if(count($tag->posts) > 0)
+                            @foreach($tag->posts as $post)
                                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                     <div class="case-item">
                                         <div class="case-item__thumb">
@@ -30,7 +30,7 @@
                             @endforeach
                         @else
                             <div class="col-xs-12 text-center">
-                                <h1>This category doesn't have any posts yet</h1>
+                                <h1>This tag doesn't have any posts yet</h1>
                             </div>
                         @endif
 

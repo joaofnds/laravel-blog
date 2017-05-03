@@ -25,6 +25,9 @@ Route::get('/home', 'HomeController@index')
 Route::get('/category/{id}', 'FrontEndController@category')
     ->name('category.single');
 
+Route::get('/tag/{id}', 'FrontEndController@tag')
+    ->name('tag.single');
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'settings'], function() {

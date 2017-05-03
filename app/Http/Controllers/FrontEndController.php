@@ -49,16 +49,30 @@ class FrontEndController extends Controller
     public function category($id)
     {
         $category = Category::find($id);
-        $tags = Tag::all();
         $settings = Setting::first();
         $categories = Category::take(4)->get();
-        $categories_all = Category::all();
+        $tags = Tag::all();
 
         return view('category', [
             'category' => $category,
             'title' => $category->name,
             'categories' => $categories,
-            'categories_all' => $categories_all,
+            'tags' => $tags,
+            'settings' => $settings
+        ]);
+    }
+    public function tag($id)
+    {
+        $tag = Tag::find($id);
+        $tags = Tag::all();
+        $settings = Setting::first();
+        $categories = Category::take(4)->get();
+        $categories_all = Category::all();
+
+        return view('tag', [
+            'tag' => $tag,
+            'title' => $tag->tag,
+            'categories' => $categories,
             'tags' => $tags,
             'settings' => $settings
         ]);
