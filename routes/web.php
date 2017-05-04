@@ -28,6 +28,22 @@ Route::get('/category/{id}', 'FrontEndController@category')
 Route::get('/tag/{id}', 'FrontEndController@tag')
     ->name('tag.single');
 
+Route::get('/results', function() {
+    $query = request('query');
+    $posts = \App\Post::where('title', 'like', "%$query%")->get();
+    $settings = \App\Setting::first();
+    $categories = \App\Category::take(5)->get();
+    $tags = \App\Tag::all();
+
+    return view('results')
+        ->with('posts', $posts)
+        ->with('title', "Search: $query")
+        ->with('settings', $settings)
+        ->with('categories', $categories)
+        ->with('tags', $tags);
+
+})->name('results');
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'settings'], function() {
