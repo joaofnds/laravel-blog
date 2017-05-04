@@ -56,6 +56,35 @@
 
                     </article>
 
+                    <div class="blog-details-author">
+
+                        <div class="blog-details-author-thumb">
+                            <img src="{{ $author->profile->avatar }}" alt="Author avatar">
+                        </div>
+
+                        <div class="blog-details-author-content">
+                            <div class="author-info">
+                                <h5 class="author-name">{{ $post->user->name }}</h5>
+                            </div>
+                            <p class="text">{{ $author->profile->about }}</p>
+                            <div class="socials">
+
+                                <a href="{{ $author->profile->twitter }}" class="social__item" target="_blank">
+                                    <img src="{{ asset('app/svg/twitter.svg') }}" alt="twitter">
+                                </a>
+
+                                <a href="{{ $author->profile->facebook }}" class="social__item" target="_blank">
+                                    <img src="{{ asset('app/svg/circle-facebook.svg') }}" alt="facebook">
+                                </a>
+
+                                <a href="{{ $author->profile->youtube }}" class="social__item" target="_blank">
+                                    <img src="{{ asset('app/svg/youtube.svg') }}" alt="youtube">
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="pagination-arrow">
 
                         @if($next_post)

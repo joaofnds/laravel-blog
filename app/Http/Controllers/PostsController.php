@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Post;
 use App\Category;
 use App\Tag;
@@ -50,7 +51,8 @@ class PostsController extends Controller
             'title' => 'required',
             'featured' => 'required|image',
             'content' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'user_id' => Auth::id()
         ]);
 
         $featured = $request->featured;
@@ -61,7 +63,7 @@ class PostsController extends Controller
 
         $post = Post::create([
             'title' => $request->title,
-            'content' => $request->content,
+            'content' => request('content'),
             'category_id' => $request->category_id,
             'featured' => 'uploads/posts/'.$featured_new_name,
             'slug' => str_slug($request->title)
@@ -123,7 +125,7 @@ class PostsController extends Controller
         }
 
         $post->title = $request->title;
-        $post->content = $request->content;
+        $post->content = request('content');
         $post->category_id = $request->category_id;
         $post->slug = str_slug($request->title);
 
