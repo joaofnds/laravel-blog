@@ -54,6 +54,10 @@
 
                         </div>
 
+                        <div class="socials">
+                            <div class="addthis_inline_share_toolbox"></div>
+                        </div>
+
                     </article>
 
                     <div class="blog-details-author">
@@ -151,4 +155,5 @@
             </main>
         </div>
     </div>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-590b91102e23226b"></script>
 @endsection
