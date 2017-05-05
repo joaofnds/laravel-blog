@@ -44,6 +44,14 @@ Route::get('/results', function() {
 
 })->name('results');
 
+Route::post('/subscribe', function() {
+    $email = request('email');
+
+    Newsletter::subscribe($email);
+
+    return redirect()->back();
+})->name('subscribe');
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'settings'], function() {
