@@ -19,9 +19,6 @@ Route::get('/post/{slug}', 'FrontEndController@single')
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')
-    ->name('home');
-
 Route::get('/category/{id}', 'FrontEndController@category')
     ->name('category.single');
 
@@ -53,6 +50,9 @@ Route::post('/subscribe', function() {
 })->name('subscribe');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    
+    Route::get('/dashboard', 'HomeController@index')
+        ->name('dashboard');
 
     Route::group(['prefix' => 'settings'], function() {
        Route::get('/', 'SettingsController@index')
